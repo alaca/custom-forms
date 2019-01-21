@@ -1,0 +1,42 @@
+.ascf-hidden {
+    display: none;
+} 
+
+.as-component__input {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.as_inline_options {
+    display: inline-block;
+    padding-right: 30px;
+}
+
+.as_stack_options {
+    display: block;
+}
+
+.as_stack_options input, .as_inline_options input, .as_stack_options label, .as_inline_options label {
+    display: inline-block;
+}
+
+.as-component__label {
+    display: block;
+}
+
+.as-component__required {
+    color: red;
+}
+
+.wp-block-column {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.wp-block-column:first-child {
+    padding-left: 0 !important;
+}
+
+.wp-block-column:last-child {
+    padding-right: 0 !important;
+}

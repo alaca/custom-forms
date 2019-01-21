@@ -1,0 +1,348 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Awesome Support: Custom Forms\n"
+"POT-Creation-Date: 2018-11-18 09:31+0100\n"
+"PO-Revision-Date: 2018-11-18 09:28+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: awesome-support-custom-forms.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: dist\n"
+
+#: awesome-support-custom-forms.php:43
+#, php-format
+msgid ""
+"You need Awesome Support to activate this Awesome Support addon. Please <a "
+"href=\"%s\" target=\"_blank\">install Awesome Support</a> before continuing."
+msgstr ""
+
+#: awesome-support-custom-forms.php:128
+#, php-format
+msgid ""
+"You need Awesome Support to activate this addon. Please <a href=\"%s\" "
+"target=\"_blank\">install Awesome Support</a> before continuing."
+msgstr ""
+
+#: includes/api.php:163
+#, php-format
+msgid "Field %s updated"
+msgstr ""
+
+#: includes/api.php:169
+#, php-format
+msgid "Field %s not found"
+msgstr ""
+
+#: includes/api.php:237 includes/api.php:293 includes/api.php:363
+msgid "Request parameters missing"
+msgstr ""
+
+#: includes/api.php:267 src/blocks/checkbox/index.js:36
+#: src/blocks/checkbox/index.js:162 src/blocks/input/index.js:48
+#: src/blocks/input/index.js:209 src/blocks/radio/index.js:42
+#: src/blocks/radio/index.js:171 src/blocks/select/index.js:48
+#: src/blocks/select/index.js:173 src/blocks/textarea/index.js:48
+#: src/blocks/textarea/index.js:177 src/blocks/upload/index.js:46
+#: src/blocks/upload/index.js:157 src/components/as-custom-fields/index.js:298
+#: src/components/as-toggle-inspector/index.js:129
+msgid "Label"
+msgstr ""
+
+#: includes/api.php:271 src/blocks/input/index.js:44
+#: src/blocks/input/index.js:254 src/blocks/textarea/index.js:44
+#: src/blocks/textarea/index.js:203 src/blocks/upload/index.js:42
+#: src/blocks/upload/index.js:183 src/components/as-custom-fields/index.js:299
+#: src/components/as-custom-fields/index.js:375
+msgid "Placeholder"
+msgstr ""
+
+#. Description of the plugin/theme
+#: includes/helpers.php:24
+msgid "Custom Forms"
+msgstr ""
+
+#: includes/helpers.php:25
+msgid "Custom Form"
+msgstr ""
+
+#: includes/helpers.php:145
+msgid "Custom Forms Blocks"
+msgstr ""
+
+#: includes/helpers.php:203
+msgid "Create a new ticket"
+msgstr ""
+
+#: includes/helpers.php:210
+msgid "Ticket Subject"
+msgstr ""
+
+#: includes/helpers.php:211
+msgid "Enter subject"
+msgstr ""
+
+#: includes/helpers.php:217
+msgid "Text"
+msgstr ""
+
+#: includes/helpers.php:221
+msgid "Hidden"
+msgstr ""
+
+#: includes/helpers.php:229
+msgid "Ticket content"
+msgstr ""
+
+#: includes/helpers.php:230
+msgid "Enter content"
+msgstr ""
+
+#: includes/helpers.php:260
+msgid "Assign form"
+msgstr ""
+
+#: includes/helpers.php:282
+msgid "Custom Form shortcode"
+msgstr ""
+
+#: includes/helpers.php:304 includes/helpers.php:360
+msgid "Form shortcode"
+msgstr ""
+
+#: includes/helpers.php:322
+msgid "Not assigned"
+msgstr ""
+
+#: includes/helpers.php:323
+msgid "User"
+msgstr ""
+
+#: includes/helpers.php:324
+msgid "User role"
+msgstr ""
+
+#: includes/helpers.php:325
+msgid "Product"
+msgstr ""
+
+#: includes/helpers.php:331
+msgid "Company Profile"
+msgstr ""
+
+#: includes/helpers.php:336
+msgid "Department"
+msgstr ""
+
+#: includes/helpers.php:362
+msgid "Show Department Field First"
+msgstr ""
+
+#: includes/helpers.php:363
+msgid "Show Product Field First"
+msgstr ""
+
+#: includes/views/assign_metabox.php:7
+msgid "Assign form to"
+msgstr ""
+
+#: includes/views/company_profile.php:11
+msgid "Select company profile"
+msgstr ""
+
+#: includes/views/departments.php:4
+msgid "Select department"
+msgstr ""
+
+#: includes/views/form.php:5
+msgid "Submit"
+msgstr ""
+
+#: includes/views/products.php:4
+msgid "Select product"
+msgstr ""
+
+#: includes/views/user.php:7
+msgid "Enter user name or email"
+msgstr ""
+
+#: includes/views/user.php:10
+msgid "Assign user"
+msgstr ""
+
+#: includes/views/user.php:15
+msgid "Assigned users"
+msgstr ""
+
+#: includes/views/user_role.php:5
+msgid "Select user role"
+msgstr ""
+
+#: src/blocks/checkbox/index.js:25
+msgid "Custom Forms Checkbox"
+msgstr ""
+
+#: src/blocks/checkbox/index.js:63 src/blocks/input/index.js:99
+#: src/blocks/radio/index.js:69 src/blocks/select/index.js:75
+#: src/blocks/textarea/index.js:105 src/blocks/upload/index.js:87
+msgid "Virtual"
+msgstr ""
+
+#: src/blocks/checkbox/index.js:64 src/blocks/input/index.js:100
+#: src/blocks/radio/index.js:70 src/blocks/select/index.js:76
+#: src/blocks/textarea/index.js:106 src/blocks/upload/index.js:88
+msgid "New custom field"
+msgstr ""
+
+#: src/blocks/checkbox/index.js:65 src/blocks/input/index.js:101
+#: src/blocks/radio/index.js:71 src/blocks/select/index.js:77
+#: src/blocks/textarea/index.js:107 src/blocks/upload/index.js:89
+msgid "Existing custom field"
+msgstr ""
+
+#: src/blocks/checkbox/index.js:154 src/blocks/input/index.js:195
+#: src/blocks/radio/index.js:163 src/blocks/select/index.js:165
+#: src/blocks/textarea/index.js:169 src/blocks/upload/index.js:149
+#: src/components/as-custom-fields/index.js:27
+msgid "Custom field option"
+msgstr ""
+
+#: src/blocks/checkbox/index.js:159 src/blocks/input/index.js:202
+#: src/blocks/radio/index.js:168 src/blocks/select/index.js:170
+#: src/blocks/textarea/index.js:174 src/blocks/upload/index.js:154
+msgid "Attributes"
+msgstr ""
+
+#: src/blocks/checkbox/index.js:180 src/blocks/input/index.js:243
+#: src/blocks/radio/index.js:189 src/blocks/select/index.js:191
+#: src/blocks/textarea/index.js:196 src/blocks/upload/index.js:176
+msgid "Name"
+msgstr ""
+
+#: src/blocks/checkbox/index.js:187 src/blocks/input/index.js:263
+#: src/blocks/radio/index.js:196 src/blocks/select/index.js:198
+#: src/blocks/textarea/index.js:213
+#: src/components/as-toggle-inspector/index.js:172
+msgid "Required"
+msgstr ""
+
+#: src/blocks/checkbox/index.js:196 src/blocks/radio/index.js:205
+msgid "Stack options"
+msgstr ""
+
+#: src/blocks/input/index.js:30
+msgid "Custom Forms Input"
+msgstr ""
+
+#: src/blocks/input/index.js:162
+msgid " - Hidden"
+msgstr ""
+
+#: src/blocks/input/index.js:232
+msgid "Type"
+msgstr ""
+
+#: src/blocks/input/index.js:272 src/blocks/textarea/index.js:223
+#: src/components/as-toggle-inspector/index.js:209
+msgid "Disabled"
+msgstr ""
+
+#: src/blocks/input/index.js:283 src/blocks/textarea/index.js:230
+#: src/components/as-toggle-inspector/index.js:140
+msgid "Value"
+msgstr ""
+
+#: src/blocks/radio/index.js:31
+msgid "Custom Forms Radio"
+msgstr ""
+
+#: src/blocks/select/index.js:31
+msgid "Custom Forms Select"
+msgstr ""
+
+#: src/blocks/textarea/index.js:30
+msgid "Custom Forms Textarea"
+msgstr ""
+
+#: src/blocks/textarea/index.js:239
+msgid "Rows"
+msgstr ""
+
+#: src/blocks/upload/index.js:28
+msgid "Custom Forms Upload"
+msgstr ""
+
+#: src/blocks/upload/index.js:193
+msgid "Multiple"
+msgstr ""
+
+#: src/components/as-custom-fields/index.js:30
+msgid "Field type"
+msgstr ""
+
+#: src/components/as-custom-fields/index.js:42
+#: src/components/as-custom-fields/index.js:194
+#: src/components/as-custom-fields/index.js:247
+#: src/components/as-custom-fields/index.js:322
+msgid "Select field"
+msgstr ""
+
+#: src/components/as-custom-fields/index.js:53
+#: src/components/as-custom-fields/index.js:86
+#: src/components/as-custom-fields/index.js:95
+msgid "Save custom field"
+msgstr ""
+
+#: src/components/as-custom-fields/index.js:62
+msgid "Delete custom field"
+msgstr ""
+
+#: src/components/as-toggle-inspector/index.js:26
+#: src/components/as-toggle-inspector/index.js:44
+msgid "Enter label"
+msgstr ""
+
+#: src/components/as-toggle-inspector/index.js:27
+#: src/components/as-toggle-inspector/index.js:45
+msgid "Enter value"
+msgstr ""
+
+#: src/components/as-toggle-inspector/index.js:92
+msgid "Options"
+msgstr ""
+
+#: src/components/as-toggle-inspector/index.js:190
+msgid "Checked"
+msgstr ""
+
+#: src/components/as-toggle-inspector/index.js:236
+msgid "Add option"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Awesome Support: Custom Forms"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://getawesomesupport.com/addons/"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "The Awesome Support Team"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://getawesomesupport.com"
+msgstr ""
