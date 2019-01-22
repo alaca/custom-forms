@@ -4,23 +4,26 @@
  * Awesome Support Custom Forms
  *
  */
-class CustomForms
+class CustomForms 
 {
     private static $instance = null;
 
     private function __construct() {
 
+        // Load language
+        load_plugin_textdomain( 'as-custom-forms', false, dirname( __FILE__ ) . '/languages' );
+
         // Register post type 
         add_action( 'init', 'ascf_register_post_type' );
 
-        // Register shortcode
-        add_action( 'init', 'ascf_register_shortcode' );
+        // Register dynamic blocks 
+        add_action( 'admin_init', 'ascf_register_dynamic_blocks');
 
-        // Load custom fields
-        add_action( 'init', 'ascf_load_custom_fields' );
-
-        // Register routes
-        add_action( 'rest_api_init', [ API::get_instance(), 'registerRoutes' ] );
+        /**
+         * Filter Custom fields list
+         * Get only user defined fields from API
+         */ 
+        add_filter( 'wpas_api_custom_fields_filter', 'ascf_api_custom_fields_filter' );
 
     }
 
@@ -83,14 +86,7 @@ class CustomForms
         // Whitelist blocks
         add_filter( 'allowed_block_types', 'ascf_allowed_blocks', 10, 2 );
 
-        // Add meta boxes
-        add_action('add_meta_boxes', 'ascf_add_meta_boxes' );
-
-        // User options
-        add_action( 'show_user_profile', 'ascf_add_user_form_options' );
-        add_action( 'edit_user_profile', 'ascf_add_user_form_options' );
-
-    } 
+    }
 
 
 }

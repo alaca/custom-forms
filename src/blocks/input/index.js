@@ -1,25 +1,20 @@
 /**
- * External dependencies
- */
-import { isEmpty } from 'lodash'
-
-/**
  * WordPress dependencies
  */
 const { __ } = wp.i18n
 const { registerBlockType } = wp.blocks
 const { Fragment } = wp.element
-const { PanelBody, ToggleControl, TextControl, FontSizePicker, SelectControl } = wp.components
+const { PanelBody, ToggleControl, TextControl, SelectControl, FontSizePicker  } = wp.components
 const {	InspectorControls } = wp.editor.InspectorControls ? wp.editor : wp.blocks
+
+import apiFetch from '@wordpress/api-fetch'
 
 /**
  * Internal dependencies
  */
 import AsTextControl from '../../components/as-text-control'
-import { AsCustomFieldsControls, updateCustomFieldProperty } from '../../components/as-custom-fields'
 import { InputIcon } from '../../icons'
-import { fontSizes, fallbackFontSize } from '../../settings' 
-import { getFieldName } from '../../helpers' 
+import { fontSizes, fallbackFontSize } from '../../settings'
 
 
 /**
@@ -28,52 +23,50 @@ import { getFieldName } from '../../helpers'
 registerBlockType( 'awesome-support-custom-forms/input', {
     title: 'Input',
     icon: InputIcon,
-    description: __( 'Custom Forms Input' ),
+    description: __( 'Custom Forms Input', 'as-custom-forms' ),
     category: 'as_custom_forms',
     attributes: {
         idAttr: {
             type: 'string',
             source: 'attribute',
-            selector: 'input',
+            selector : 'input',
             attribute: 'id'
+        },
+        classAttr: {
+            type: 'string',
+            source: 'attribute',
+            selector: 'input',
+            attribute: 'class'
         },
         placeholderAttr: {
             type: 'string',
             source: 'attribute',
             selector: 'input',
             attribute: 'placeholder',
-            default: __( 'Placeholder' )
+            default: __( 'Placeholder', 'as-custom-forms' )
         },
         labelAttr: {
             type: 'string',
-            default: __( 'Label' )
+            default: __( 'Label', 'as-custom-forms' )
         },
         valueAttr: {
             type: 'string',
             source: 'attribute',
-            selector: 'input',
-            attribute: 'value'
+            selector : 'input',
+            attribute: 'value',
         },
         nameAttr: {
             type: 'string',
             source: 'attribute',
             selector: 'input',
             attribute: 'name'
-        },      
+        },     
         requiredAttr: {
             type: 'boolean',
             default: false
         },
-        disabledAttr: {
-            type: 'boolean',
-            source: 'attribute',
-            selector: 'input',
-            attribute: 'disabled',
-            default: false
-        },  
         inputType: {
-            type: 'string',
-            default: 'text'
+            type: 'string'
         },
         fieldType: {
             type: 'string',
@@ -86,24 +79,7 @@ registerBlockType( 'awesome-support-custom-forms/input', {
             type: 'boolean',
             default: false
         },
-        isSavingCustomField: {
-            type: 'boolean',
-            default: false
-        },
-        isDeletingCustomField: {
-            type: 'boolean',
-            default: false
-        },
-        fieldTypeOptions: {
-            type: 'array',
-            default: [
-                { label: __( 'Virtual' ), value: 'virtual' },
-                { label: __( 'New custom field' ), value: 'new' },
-                { label: __( 'Existing custom field' ), value: 'existing' }
-            ]
-            
-        },
-        inputTypeOptions: {
+        selectOptions: {
             type: 'array',
             default: [
                 { label: 'Text', value: 'text' },
@@ -111,218 +87,225 @@ registerBlockType( 'awesome-support-custom-forms/input', {
                 { label: 'Date', value: 'date' },
                 { label: 'Number', value: 'number' },
                 { label: 'Email', value: 'email' },
-                { label: 'URL', value: 'url' },
-                { label: 'Password', value: 'password' },
             ]
             
         },
-        fieldsList: {
+        fieldOptions: {
             type: 'array',
-            default: []
-            
-        },
-        fieldsData: {
-            type: 'array',
-            default: []
+            default: [
+                { label: __( 'Virtual', 'as-custom-forms' ), value: 'virtual' },
+                { label: __( 'New custom field', 'as-custom-forms' ), value: 'new' },
+                { label: __( 'Existing custom field', 'as-custom-forms' ), value: 'existing' }
+            ]
             
         },
         labelFontSize: {
             type: 'string'
-        },
-        attributesPanelOpened: {
-            type: 'string',
-            default: true
         }
     },
     edit( { attributes, setAttributes } ) {
 
-        const { 
+        let { 
             idAttr, 
+            classAttr, 
             placeholderAttr, 
             labelAttr, 
             valueAttr, 
             requiredAttr, 
-            disabledAttr,
-            inputType,
-            inputTypeOptions,
             nameAttr, 
-            fieldType,
+            inputType, 
+            fieldType, 
             isDisabled, 
-            labelFontSize,
-            fieldsList,
-            attributesPanelOpened
+            selectOptions, 
+            fieldOptions, 
+            labelFontSize 
         } = attributes
 
-        const isHidden = ( inputType === 'hidden' )
-        const isOpened = ( fieldType == 'existing' ) ? ( fieldsList.length > 1 && ! isEmpty( nameAttr ) ) : attributesPanelOpened
+        // Select custom field type
+        function onSelectFieldType( type ) {
+
+
+            
+                    /** 
+
+            switch( type ) {
+
+                case 'new':
+
+                    apiFetch( { path: '/dev/wp-json/wp/v2/posts' } ).then( posts => {
+                        console.log( 'new', posts );
+                    } );
+
+                    break;
+
+                case 'existing':
+
+                    apiFetch( { path: '/dev/wp-json/wp/v2/posts' } ).then( posts => {
+                        console.log( 'existing', posts );
+                    } );
+
+     
+                    break;
+            }
+
+                */
+
+
+            setAttributes( { fieldType: type } )
+
+
+        }
 
         // Change input type
         function onChangeInputType( type ) {
 
-            let label = labelAttr
-            let addon = __( ' - Hidden' )
+            let addonString = __( ' - Hidden', 'as-custom-forms' )
 
             if ( type == 'hidden' ) {
-                setAttributes( { inputType: type, hidden: true, labelAttr: label += addon } )
+                setAttributes( { inputType: type, hidden: true, labelAttr: labelAttr += addonString } )
             } else {
-                setAttributes( { inputType: type, hidden: false, labelAttr: label.replace( addon, '' ) } )
+                setAttributes( { inputType: type, hidden: false, labelAttr: labelAttr.replace( addonString, '' ) } )
             }
 
         }
-
-
+        
         return (
 
-            <Fragment>
+            <div>
 
                 <AsTextControl
                     label={ labelAttr }
                     labelSize={ labelFontSize }
-                    name={ getFieldName( nameAttr, fieldType ) }
-                    value={ valueAttr }
-                    type={ inputType }
+                    name={ nameAttr }
                     id={ idAttr }
+                    value={ valueAttr }
                     placeholder={ placeholderAttr }
                     required={ requiredAttr }
-                    disabled={ disabledAttr }
+                    type={ inputType }
+                    classAttr={ classAttr }  
                     fieldType={ fieldType }
-                    onChange={ value => { setAttributes( { valueAttr: value } ) } }   
+                    onChange={ value => { setAttributes( { valueAttr: value } ) } } 
+                    onClick={ attr => { setAttributes( { idAttr: attr.id } ) } } 
+
                 />
                 
                 <InspectorControls>
 
-                    { ! isDisabled && (
+                    <PanelBody title={ __( 'Custom field option', 'as-custom-forms' ) } initialOpen={ true }>
 
-                        <AsCustomFieldsControls 
-                            label={ __( 'Custom field option' ) }
-                            attributes={ attributes }
-                            onChange={ updated => setAttributes( updated ) }
-                        />
-
-                    ) }
-
-                    <PanelBody title={ __( 'Attributes' ) } opened={ isOpened }>
-
-                        { ! isHidden && (
-
-                            <Fragment>
-
-                                <TextControl 
-                                    label={ __( 'Label' ) } 
-                                    value={ labelAttr } 
-                                    onChange={ value => {
-                                        setAttributes( { labelAttr: value } ) 
-                                        updateCustomFieldProperty( 'title', value, attributes, true )
-                                    } } 
-                                />
-
-                                <FontSizePicker 
-                                    fontSizes={ fontSizes } 
-                                    value={ labelFontSize }
-                                    fallbackFontSize={ fallbackFontSize }
-                                    onChange={ value => { setAttributes( { labelFontSize: value } ) } } 
-                                />
-
-                                <hr />
-
-                            </Fragment>
-
-                        ) }
-
-                        
                         <SelectControl
-                            label={ __( 'Type' ) }
-                            value={ inputType }
-                            options={ inputTypeOptions }
-                            onChange={ value => {
-                                onChangeInputType( value )
-                                updateCustomFieldProperty( 'field_type', value, attributes )
-                            } }
+                            label={ __( 'Field type', 'as-custom-forms' ) }
+                            value={ fieldType }
+                            options={ fieldOptions }
+                            onChange={ onSelectFieldType }
                         />
 
-                        
-                        <TextControl 
-                            label={ __( 'Name' ) } 
-                            value={ getFieldName( nameAttr ) } 
-                            onChange={ value => setAttributes( { nameAttr: value } ) } 
-                            disabled={  isDisabled || ( fieldType == 'existing' ) }
-                        />
+                    </PanelBody>
 
-                        { ! isHidden && (
+                    <PanelBody title={ __( 'Attributes', 'as-custom-forms' ) } initialOpen={ true }>
 
-                            <Fragment>
+                        <Fragment>
 
-                                <TextControl 
-                                    label={ __( 'Placeholder' ) } 
-                                    value={ placeholderAttr } 
-                                    onChange={ value => {
-                                        setAttributes( { placeholderAttr: value } ) 
-                                        updateCustomFieldProperty( 'placeholder', value, attributes, true )
-                                    } } 
-                                />
+                            { ( inputType != 'hidden' ) && (
 
-                                <ToggleControl
-                                    label={ __( 'Required' ) }
-                                    checked={ requiredAttr }
-                                    onChange={ value => {
-                                        setAttributes( { requiredAttr: value  } ) 
-                                        updateCustomFieldProperty( 'required', value, attributes )
-                                    } }  
-                                />
-                                
-                                <ToggleControl
-                                    label={ __( 'Disabled' ) }
-                                    checked={ disabledAttr }
-                                    onChange={ value => { setAttributes( { disabledAttr: value } ) } } 
-                                />
+                                <Fragment>
 
-                            </Fragment>
+                                    <TextControl 
+                                        label={ __( 'Label', 'as-custom-forms' ) } 
+                                        value={ labelAttr } 
+                                        onChange={ value => { setAttributes( { labelAttr: value } ) } } 
+                                    />
 
-                        ) }
+                                    <FontSizePicker 
+                                        fontSizes={ fontSizes } 
+                                        value={ labelFontSize }
+                                        fallbackFontSize={ fallbackFontSize }
+                                        onChange={ value => { setAttributes( { labelFontSize: value } ) } } 
+                                    />
 
+                                    <hr />
 
-                        <TextControl 
-                            label={ __( 'Value' ) } 
-                            value={ valueAttr } 
-                            onChange={ value => setAttributes( { valueAttr: value } ) }   
-                        />
+                                    <ToggleControl
+                                        label={ __( 'Required', 'as-custom-forms' ) }
+                                        checked={ requiredAttr }
+                                        onChange={ value => { setAttributes( { requiredAttr: value } ) } } 
+                                    />
 
+                                </Fragment>
+
+                            ) }
+
+                            <TextControl 
+                                label={ __( 'Name', 'as-custom-forms' ) } 
+                                value={ nameAttr } 
+                                onChange={ value => { setAttributes( { nameAttr: value } ) } } 
+                                disabled={ isDisabled }
+                            />
+
+                            { ( inputType != 'hidden' ) && (
+
+                                <Fragment>
+
+                                    <TextControl 
+                                        label="ID"
+                                        value={ idAttr } 
+                                        onChange={ value => { setAttributes( { idAttr: value } ) } }   
+                                    />
+
+                                    <TextControl 
+                                        label={ __( 'Class', 'as-custom-forms' ) } 
+                                        value={ classAttr } 
+                                        onChange={ value => { setAttributes( { classAttr: value } ) } }   
+                                    />
+
+                                    <TextControl 
+                                        label={ __( 'Placeholder', 'as-custom-forms' ) } 
+                                        value={ placeholderAttr } 
+                                        onChange={ value => { setAttributes( { placeholderAttr: value } ) } } 
+                                    />
+
+                                </Fragment>
+
+                            ) }
+                            
+                            <TextControl 
+                                label={ __( 'Value', 'as-custom-forms' ) } 
+                                value={ valueAttr } 
+                                onChange={ value => { setAttributes( { valueAttr: value } ) } }   
+                            />
+
+                            <SelectControl
+                                label={ __( 'Type', 'as-custom-forms' ) }
+                                value={ inputType }
+                                options={ selectOptions }
+                                onChange={ onChangeInputType }
+                            />
+
+                        </Fragment>
 
                     </PanelBody>
 
                 </InspectorControls>
 
-            </Fragment>
+            </div>
         );
     },
 
     save( { attributes } ) {
 
-        const { 
-            idAttr, 
-            placeholderAttr, 
-            labelAttr, 
-            labelFontSize,
-            valueAttr, 
-            requiredAttr, 
-            disabledAttr,
-            nameAttr,
-            fieldType,
-            inputType
-        } = attributes
+        const { idAttr, classAttr, placeholderAttr, labelAttr, valueAttr, requiredAttr, nameAttr, inputType, fieldType } = attributes
 
         return (
             
             <AsTextControl
                 label={ labelAttr }
-                labelSize={ labelFontSize }
-                name={ getFieldName( nameAttr, fieldType ) }
-                value={ valueAttr }
+                name={ nameAttr }
                 id={ idAttr }
-                type={ inputType }
+                value={ valueAttr }
                 placeholder={ placeholderAttr }
                 required={ requiredAttr }
-                disabled={ disabledAttr }
+                type={ inputType }
+                classAttr={ classAttr }  
                 fieldType={ fieldType }
             />
         

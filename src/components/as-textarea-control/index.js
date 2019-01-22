@@ -7,9 +7,10 @@
  */
 const { withInstanceId } =  wp.compose;
 
-const AsTextareaControl = ( { label, labelSize, name, value, id, instanceId, placeholder, rows, required, disabled, fieldType, onChange } ) => {
+const AsTextareaControl = ( { label, labelSize, name, value, id, instanceId, placeholder, rows, required, classAttr, onChange, onClick } ) => {
 
 	const onChangeValue = ( event ) => onChange( event.target.value )
+	const onClickAction = ( event ) => onClick( event.target )
 
 	const elementId =  id || 'as-textarea-control-' + instanceId
 
@@ -23,12 +24,12 @@ const AsTextareaControl = ( { label, labelSize, name, value, id, instanceId, pla
 				id={ elementId }
 				name={ name }
 				value={ value }
-				required={ required }
-				disabled={ disabled }
+				required={ required ? 'required' : '' }
 				placeholder={ placeholder }
 				rows={ rows }
                 onChange={ onChangeValue }
-				data-type={ fieldType }
+                onClick={ onClickAction }
+                className={ classAttr } 
 			/>
 
         </div>

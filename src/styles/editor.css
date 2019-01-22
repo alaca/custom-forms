@@ -6,121 +6,12 @@
     color: red;
 }
 
-.as-component__input input[type="text"], 
-.as-component__input input[type="date"], 
-.as-component__input input[type="email"], 
-.as-component__input input[type="password"], 
-.as-component__input input[type="url"], 
-.as-component__input textarea {
+.as-component__input input:not([type="submit"]), .as-component__input textarea {
     width: 100%;
     padding: 10px !important;
-}
-.as-component__input select {
-    height: 38px;
 }
 
 .ascf-hidden {
     opacity: 0.5 !important;
     pointer-events:none;
 } 
-
-
-.as-component__input input[disabled], 
-.as-component__input textarea[disabled], 
-.as-component__input select[disabled] {
-    opacity: 0.5 !important;
-}
-
-.as-component__option_label {
-    font-weight: normal;
-}
-
-.as-cf-column {
-    float: left;
-    position: relative;
-    padding: 0 5px 0 5px;
-    width: 41%;
-    min-height: 40px;
-}
-
-.as-cf-column-full {
-    float: left;
-    padding: 2px 25px 0 30px;
-    width: 100%;
-}
-
-.as-cf-column:first-child {
-    padding-left: 0 !important;
-    width: 10%;
-}
-
-.as-cf-column:last-child {
-    padding-right: 0 !important;
-    width: 8%;
-}
-
-.as-cf-row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.as-cf-options-remove-btn {
-    position: absolute;
-    top: 28px;
-    right: -10px;
-}
-
-
-.as-cf-options-move-up-btn {
-    position: absolute;
-    top: 18px;
-    left: -10px;
-}
-
-.as-cf-options-move-down-btn {
-    position: absolute;
-    bottom: -18px;
-    left: -10px;
-}
-
-
-.as_inline_options {
-    display: inline-block;
-    padding-right: 30px;
-}
-
-
-/** 
-* Hide default status metabox
-*/
-.components-panel__body.edit-post-post-status {
-    display: none;
-}
-
-.as-metabox-panel {
-    padding: 10px 0;
-}
-
-.as-metabox-panel label:not(.ascf_no_style) {
-    font-weight: bold;
-    display: block;
-    padding-bottom: 5px !important;
-}
-
-.as-metabox-panel input[type="text"], .as-metabox-panel select {
-    width: 100%;
-}
-
-.ascf_list_item {
-    padding-bottom: 8px;
-}
-
-.ascf_remove_user {
-    float: right;
-    text-decoration: none;
-}
-
-#ascf_assign_user_btn {
-    margin-top: 15px;
-}
