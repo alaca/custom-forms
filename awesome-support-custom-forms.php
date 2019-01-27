@@ -3,7 +3,7 @@
  * Plugin Name:       Awesome Support: Custom Forms
  * Plugin URI:        
  * Description:       Custom Forms
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Awesome Support
  * Author URI:        http://getawesomesupport.com
  * Text Domain:       as-custom-forms
